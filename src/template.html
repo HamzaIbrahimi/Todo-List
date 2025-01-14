@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
-    
+    <div id="sidebar">
+        <div class="sidebar top_area">
+            <h2>Your Todo Hub</h2>
+            <hr>
+            <button id="add_todo">
+                <img src="../logo/plus.svg" alt="">
+                <div>Add Todo</div>
+            </button>
+            <button>
+                <img src="../logo/inbox.svg" alt="">
+                <div>Todos</div>
+                <span id="todo_count"></span>
+            </button>
+            <button>
+                <img src="../logo/calendar.svg" alt="">
+                <div>Today</div>
+            </button>
+            <button>
+                <img src="../logo/filter-minus-outline.svg" alt="">
+                <div>Filter</div>
+            </button>
+        </div>
+        <div class="sidebar bottom_area">
+            <button>
+                <h3>My Projects</h3>
+                <div>projects <span id="project_count">0</span>/5</div>
+                <img id="add_project" src="../logo/plus.svg" alt="">
+            </button>
+        </div>
+    </div>
+    <div id="content">
+    </div>
+
 </body>
 </html>
