@@ -41,10 +41,10 @@
         <form method="dialog" id="form">
             <div id="form_content">
                 <div>
-                    <input type="text" id="title" name="title" required autofocus placeholder="Title" maxlength="30">
+                    <input type="text" id="title"  required autofocus placeholder="Title" maxlength="30">
                 </div>
                 <div>   
-                    <input type="text" id="description" name="description" autofocus placeholder="Short description" maxlength="100">
+                    <input type="text" id="description"  autofocus placeholder="Short description" maxlength="100">
                 </div>
                 <h3>Select Priority</h3>
                 <div id="priority_radio"> 
@@ -63,11 +63,11 @@
                 </div>  
                 <div id="date_selection"> 
                     <h3>Select Date</h3>
-                    <input type="date" id="date">
+                    <input type="date" id="date" required >
                 </div>  
                 <div id="form_buttons">
                     <input type="submit" id="form_submit_btn">
-                    <button id="exit_dialog">Exit</button>
+                    <button type="button" id="exit_dialog">Exit</button>
                 </div>              
             </div>
         </form>
