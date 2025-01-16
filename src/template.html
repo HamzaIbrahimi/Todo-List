@@ -36,6 +36,42 @@
             </button>
         </div>
     </div>
+    <!-- dialog to get input -->
+    <dialog id="dialog">
+        <form method="dialog" id="form">
+            <div id="form_content">
+                <div>
+                    <input type="text" id="title" name="title" required autofocus placeholder="Title" maxlength="30">
+                </div>
+                <div>   
+                    <input type="text" id="description" name="description" autofocus placeholder="Short description" maxlength="100">
+                </div>
+                <h3>Select Priority</h3>
+                <div id="priority_radio"> 
+                    <div>
+                        <input type="radio" id="low" name="prior" value="low" required/>
+                        <label for="low">low</label>
+                    </div>
+                  <div>
+                    <input type="radio" id="medium" name="prior" value="medium" />
+                    <label for="medium">medium</label>
+                  </div>          
+                  <div>
+                    <input type="radio" id="high" name="prior" value="high" />
+                    <label for="high">high</label>
+                  </div>
+                </div>  
+                <div id="date_selection"> 
+                    <h3>Select Date</h3>
+                    <input type="date" id="date">
+                </div>  
+                <div id="form_buttons">
+                    <input type="submit" id="form_submit_btn">
+                    <button id="exit_dialog">Exit</button>
+                </div>              
+            </div>
+        </form>
+    </dialog>
     <div id="content">
     </div>
 
