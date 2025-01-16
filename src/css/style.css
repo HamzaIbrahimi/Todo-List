@@ -70,6 +70,10 @@ body {
     border-radius: 50%;
 }
 
+.sidebar.bottom_area {
+    border: 2px ridge black;  
+}
+
 .sidebar.bottom_area > button{
     justify-content: space-between;
 }
