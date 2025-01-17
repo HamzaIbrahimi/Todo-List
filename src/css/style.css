@@ -42,6 +42,7 @@ body {
  img {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 #sidebar > div > button {
@@ -111,6 +112,10 @@ input[type="text"] {
     height: 30px;
     font-size: Large;
 }
+input[name="todo_remove"] {
+    width: 20px;
+    height: 20px;
+}
 
 #description {
     font-size: small;
@@ -131,6 +136,37 @@ input[type="text"] {
     padding: 3px 25px;
 }
 
+                    /* ----- todo styling ----- */
+#content {
+    padding: 40px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#todo_content {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.todo {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 20px;
+}
+
+.todo_flex {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hide {
+    display: none;
+}
 
 
 
