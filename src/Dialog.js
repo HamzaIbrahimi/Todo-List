@@ -18,7 +18,7 @@ export default class Dialog {
 
   #eventListeners() {
     this.#openBtn.addEventListener("click", () => this.#open());
-    this.#exitBtn.addEventListener("click", () => this.#close());
+    this.#exitBtn.addEventListener("click", () => this.close());
     this.#dialog.addEventListener("click", (e) => this.#closeOnOutsideClick(e));
   }
 
@@ -26,7 +26,7 @@ export default class Dialog {
     this.#dialog.showModal();
   }
 
-  #close() {
+  close() {
     this.#dialog.close();
     this.#form.reset();
   }
@@ -39,7 +39,7 @@ export default class Dialog {
       e.clientY < rect.top ||
       e.clientY > rect.bottom
     ) {
-      this.#close();
+      this.close();
     }
   }
 }
