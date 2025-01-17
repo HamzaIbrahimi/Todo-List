@@ -36,7 +36,7 @@ export class Todo {
   }
 
   toString() {
-    return `${this.title} with priority ${this.priority} on [${this.dueDate}]`;
+    return `${this.title} | with priority ${this.priority} | date: [${this.dueDate}]`;
   }
 }
 
