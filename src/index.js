@@ -1,11 +1,22 @@
 import "./css/normalize.css";
 import "./css/style.css";
-import { Todo, Todos } from "./Todo.js";
+import pop from "../sound/pop-94319.mp3";
+import { Todos } from "./Todo.js";
+import { createTodoFromForm, renderTodo } from "./createTodo.js";
 import Dialog from "./Dialog.js";
 const allTodos = new Todos();
-allTodos.add(new Todo("fix machine", "manual", "2025-01-15", 4));
-allTodos.add(new Todo("gym", "personal", "2024-12-15", 2));
-allTodos.add(new Todo("read book", "personal", "2023-01-15", 4));
-allTodos.add(new Todo("apply for job", "manual", "2024-11-07", 4));
-allTodos.add(new Todo("fix table", "manual", "2025-01-30", 4));
 const dialog = new Dialog();
+const audio = new Audio(pop);
+
+document.querySelector("#form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  allTodos.add(createTodoFromForm());
+  renderTodo(allTodos.todosArray);
+  dialog.close();
+});
+
+document.addEventListener("change", (event) => {
+  if (event.target.matches(`input[type="checkbox"]`)) {
+    audio.play();
+  }
+});
