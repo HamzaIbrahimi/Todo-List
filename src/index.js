@@ -15,8 +15,15 @@ document.querySelector("#form").addEventListener("submit", (e) => {
   dialog.close();
 });
 
-document.addEventListener("change", (event) => {
-  if (event.target.matches(`input[type="checkbox"]`)) {
+document.addEventListener("change", (e) => {
+  if (e.target.matches(`input[type="checkbox"]`)) {
     audio.play();
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("expand_todo")) {
+    const parent = e.target.parentElement;
+    parent.nextElementSibling.classList.toggle("hide");
   }
 });
