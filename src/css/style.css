@@ -164,6 +164,27 @@ input[name="todo_remove"] {
     gap: 50px;
 }
 
+.todo_flex img:hover {
+    border: 2px solid black;
+    transition: 300ms ease;
+}
+
+.todo_remove {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 40%;
+}
+
+.todo_remove:hover {
+    background-color: green;
+}
+
+#todo_info {
+    opacity: 0.5;
+    font-size: small;
+}
+
 .hide {
     display: none;
 }
