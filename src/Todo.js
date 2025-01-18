@@ -36,7 +36,7 @@ export class Todo {
   }
 
   toString() {
-    return `${this.title} | with priority ${this.priority} | date: [${this.dueDate}]`;
+    return `Title: ${this.title} - Priority: ${this.priority} - date: ${this.dueDate}`;
   }
 }
 
@@ -59,20 +59,16 @@ export class Todos {
     return this.todosArray.length;
   }
 
-  remove(todo) {
-    const index = this.#findIndexOfTodo(todo);
+  removeTodo(string) {
+    const index = this.#findIndexOfTodo(string);
     if (index >= 0) {
       this.todosArray.splice(index, 1);
     }
   }
 
-  #findIndexOfTodo(todo) {
+  #findIndexOfTodo(string) {
     const index = this.todosArray.findIndex((elem) => {
-      return (
-        elem.title == todo.title &&
-        elem.dueDate == todo.dueDate &&
-        elem.description == todo.description
-      );
+      return elem.toString() === string;
     });
     return index;
   }
