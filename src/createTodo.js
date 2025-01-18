@@ -24,17 +24,18 @@ export function renderTodo(todoArray) {
     content.insertAdjacentHTML(
       "beforeend",
       `<div class="todo">
+            <div id = "todo_info">${todo.toString()}</div>
             <div class="todo_flex">
-                <input type="checkbox" name="todo_remove" id="todo_remove">
+                <button class="todo_remove"></button>
                 <p class="todo_info"><strong>${
                   todo.title
                 }</strong> | Due Date: [${todo.dueDate}] </p>
-                <img class="expand_todo" src=${expand}>
+                <img class="expand_todo" src="${expand}">
             </div>
             <div class="expanded_section hide">
                 <p><strong>Description</strong>: ${todo.description}</p>
-                <p>Priority: <strong> <em>${todo.priority}</em>  </strong> </p>
-                <p>Info: ${todo.toString()}</p>
+                <p><strong>Priority</strong>: <em>${todo.priority.toUpperCase()}</em></p>
+                <p><strong>Date</strong>: ${todo.dueDate}</p>
             </div>       
             <hr>
       </div>`
