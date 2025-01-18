@@ -74,7 +74,7 @@ export class Todos {
   }
 
   filterByPriority(priority) {
-    this.todosArray.filter((todo) => todo.priority === priority);
+    return this.todosArray.filter((todo) => todo.priority === priority);
   }
 
   sortByDate() {
