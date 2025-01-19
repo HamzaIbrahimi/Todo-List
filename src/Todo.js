@@ -6,8 +6,10 @@ export class Todo {
   #dueDate;
   #priority;
   #realDate;
+  #htmlDate;
 
   constructor(title, description, dueDate, priority) {
+    this.#htmlDate = dueDate; //for localStorage date issues
     this.#title = title;
     this.#description = description;
     this.#realDate = new Date(dueDate);
@@ -33,6 +35,15 @@ export class Todo {
 
   get priority() {
     return this.#priority;
+  }
+
+  toJSON() {
+    return {
+      title: this.#title,
+      description: this.#description,
+      dueDate: this.#htmlDate,
+      priority: this.#priority,
+    };
   }
 
   toString() {
