@@ -3,16 +3,32 @@ import "./css/style.css";
 import pop from "../sound/pop-268648.mp3";
 import snackbar from "snackbar";
 import { Todos } from "./Todo.js";
+import {
+  sendTodosToLocalStorage,
+  getTodosFromLocalStorage,
+} from "./storage.js";
 import { createTodoFromForm, renderTodo } from "./createTodo.js";
 import Dialog from "./Dialog.js";
 const allTodos = new Todos();
 const dialog = new Dialog();
 const audio = new Audio(pop);
 
+// Add Todos from local storage
+window.addEventListener("DOMContentLoaded", () => {
+  const localStorageArray = getTodosFromLocalStorage();
+  if (localStorageArray.length > 0) {
+    for (const todo of localStorageArray) {
+      allTodos.add(todo);
+    }
+    renderTodo(allTodos.todosArray);
+  }
+});
+
 //Add non project todos;
 document.querySelector("#form").addEventListener("submit", (e) => {
   e.preventDefault();
   allTodos.add(createTodoFromForm());
+  sendTodosToLocalStorage(allTodos.todosArray);
   renderTodo(allTodos.todosArray);
   dialog.close();
   snackbar.duration = 3000;
@@ -35,6 +51,7 @@ document.addEventListener("click", (e) => {
     const todoFullString = parent.previousElementSibling.textContent.trim();
     closestTodo.remove();
     allTodos.removeTodo(todoFullString);
+    sendTodosToLocalStorage(allTodos.todosArray);
     audio.play();
   }
 });
