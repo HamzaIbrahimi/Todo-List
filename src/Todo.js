@@ -84,12 +84,16 @@ export class Todos {
     return index;
   }
 
+  filterByDate(date) {
+    return this.todosArray.filter((todo) => todo.dueDate === date);
+  }
+
   filterByPriority(priority) {
     return this.todosArray.filter((todo) => todo.priority === priority);
   }
 
   sortByDate() {
-    return this.todosArray.sort((a, b) => compareAsc(a.date, b.date));
+    return this.todosArray.toSorted((a, b) => compareAsc(a.date, b.date));
   }
 
   print() {
