@@ -8,10 +8,12 @@ import {
   getTodosFromLocalStorage,
 } from "./storage.js";
 import { createTodoFromForm, renderTodo } from "./createTodo.js";
+import SidebarEvents from "./SidebarEvents.js";
 import Dialog from "./Dialog.js";
 const allTodos = new Todos();
 const dialog = new Dialog();
 const audio = new Audio(pop);
+const sidebarEvents = new SidebarEvents(allTodos);
 
 // Add Todos from local storage
 window.addEventListener("DOMContentLoaded", () => {
