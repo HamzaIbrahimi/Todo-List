@@ -9,7 +9,8 @@ export default class SidebarEvents {
     this.todayBtn = document.querySelector("#today_btn_sidebar");
     this.sortByDateBtn = document.querySelector("#sortby_btn_sidebar");
     this.filterBtn = document.querySelector("#filter_btn_sidebar");
-    this.sideBar = document.querySelector(".bottom_area");
+    this.radio_buttons = document.querySelector(".filter_radio_buttons");
+    this.sidebar = document.querySelector("#sidebar");
     this.#eventListeners();
   }
 
@@ -17,9 +18,8 @@ export default class SidebarEvents {
     this.todosBtn.addEventListener("click", (e) => this.#renderTodos(e));
     this.todayBtn.addEventListener("click", (e) => this.#filterByDate(e));
     this.sortByDateBtn.addEventListener("click", (e) => this.#sortByDate(e));
-    // this.filterBtn.addEventListener("click", (e) => this.#showRadioButtons(e), {
-    //   once: true,
-    // });
+    this.filterBtn.addEventListener("click", (e) => this.#showRadioButtons(e));
+    this.sidebar.addEventListener("change", (e) => this.#filterByPriority(e));
   }
 
   #renderTodos(e) {
@@ -42,26 +42,18 @@ export default class SidebarEvents {
     renderTodo(this.#todos.sortByDate());
   }
 
-  //   #showRadioButtons(e) {
-  //     this.#renderFilterHtml();
-  //     const text = e.currentTarget.children[1].textContent;
-  //     this.header.textContent = text;
-  //     const parent = e.currentTarget.parentElement;
-  //     console.log(parent);
-  //     console.log(parent.nextElementSibling);
-  //     parent.nextElementSibling.classList.toggle("hide");
-  //   }
+  #showRadioButtons(e) {
+    const text = e.currentTarget.children[1].textContent;
+    this.header.textContent = text;
+    this.radio_buttons.classList.toggle("hide");
+  }
 
-  //   #renderFilterHtml() {
-  //     this.sideBar.insertAdjacentHTML(
-  //       "beforebegin",
-  //       `
-  //     <div class="filter_radio_buttons">
-  //         <input type="radio" name="filtered_radios" id="" value="low" >
-  //         <input type="radio" name="filtered_radios" id="" value = "medium">
-  //         <input type="radio" name="filtered_radios" id="" value = "high">
-  //     </div>
-  //         `
-  //     );
-  //   }
+  #filterByPriority(e) {
+    if (e.target.matches("input")) {
+      const element = e.target;
+      const header = document.querySelector("#content h2");
+      header.textContent = `Filter By Priority: ${element.value.toUpperCase()}`;
+      renderTodo(this.#todos.filterByPriority(element.value));
+    }
+  }
 }

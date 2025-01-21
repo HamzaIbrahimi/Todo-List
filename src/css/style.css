@@ -27,7 +27,7 @@ body {
     background-color: var(--l_grey); 
 }
 
-#sidebar > * {   
+#sidebar > *:not(.filter_radio_buttons) {   
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -77,6 +77,15 @@ body {
 
 .sidebar.bottom_area > button{
     justify-content: space-between;
+}
+
+.filter_radio_buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
                     /* ----- dialog styling ----- */
