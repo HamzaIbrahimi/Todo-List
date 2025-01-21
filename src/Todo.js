@@ -47,7 +47,7 @@ export class Todo {
   }
 
   toString() {
-    return `Title: ${this.title} - Priority: ${this.priority} - date: ${this.dueDate}`;
+    return `Title: ${this.title} - Priority: ${this.priority} - Date: ${this.dueDate}`;
   }
 }
 
@@ -90,6 +90,10 @@ export class Todos {
 
   filterByPriority(priority) {
     return this.todosArray.filter((todo) => todo.priority === priority);
+  }
+
+  filterByProjectName(project) {
+    return this.todosArray.filter((todo) => todo?.projectName === project);
   }
 
   sortByDate() {
