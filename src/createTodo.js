@@ -21,6 +21,7 @@ export function renderTodo(todoArray) {
   const content = document.querySelector("#todo_content");
   content.innerHTML = "";
   for (const todo of todoArray) {
+    let project = todo?.projectName ? todo.projectName : "";
     content.insertAdjacentHTML(
       "beforeend",
       `<div class="todo">
@@ -36,6 +37,7 @@ export function renderTodo(todoArray) {
                 <p><strong>Description</strong>: ${todo.description}</p>
                 <p><strong>Priority</strong>: <em>${todo.priority.toUpperCase()}</em></p>
                 <p><strong>Date</strong>: ${todo.dueDate}</p>
+                <p><strong>${project}</strong></p>
             </div>       
             <hr>
       </div>`
