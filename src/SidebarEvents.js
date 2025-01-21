@@ -1,4 +1,5 @@
 import { renderTodo } from "./createTodo";
+import { addTodoProject } from "./todoProjects.js";
 import { format } from "date-fns";
 export default class SidebarEvents {
   #todos;
@@ -11,6 +12,7 @@ export default class SidebarEvents {
     this.filterBtn = document.querySelector("#filter_btn_sidebar");
     this.radio_buttons = document.querySelector(".filter_radio_buttons");
     this.sidebar = document.querySelector("#sidebar");
+    this.projectBtn = document.querySelector(".sidebar_add_project");
     this.#eventListeners();
   }
 
@@ -20,6 +22,10 @@ export default class SidebarEvents {
     this.sortByDateBtn.addEventListener("click", (e) => this.#sortByDate(e));
     this.filterBtn.addEventListener("click", (e) => this.#showRadioButtons(e));
     this.sidebar.addEventListener("change", (e) => this.#filterByPriority(e));
+    this.projectBtn.addEventListener("click", () => this.#showProjectForm());
+    this.sidebar.addEventListener("submit", (e) => {
+      this.#createProjectOnFormSubmit(e);
+    });
   }
 
   #renderTodos(e) {
@@ -49,11 +55,27 @@ export default class SidebarEvents {
   }
 
   #filterByPriority(e) {
-    if (e.target.matches("input")) {
+    if (e.target.matches(`input[type="radio"]`)) {
       const element = e.target;
       const header = document.querySelector("#content h2");
       header.textContent = `Filter By Priority: ${element.value.toUpperCase()}`;
       renderTodo(this.#todos.filterByPriority(element.value));
+    }
+  }
+
+  #showProjectForm() {
+    document.querySelector("#form_for_project_name").classList.toggle("hide");
+  }
+
+  #createProjectOnFormSubmit(e) {
+    e.preventDefault();
+    if (e.target.id === "form_for_project_name") {
+      const input = document.querySelector("#form_project");
+      const projectCount = document.querySelector("#project_count");
+      if (projectCount.textContent === "2") {
+        input.nextElementSibling.disabled = true;
+      }
+      addTodoProject(input.value);
     }
   }
 }

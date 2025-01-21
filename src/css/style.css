@@ -30,7 +30,7 @@ body {
 #sidebar > *:not(.filter_radio_buttons) {   
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     padding: 10px 30px;
     font-size: small; 
 }
@@ -77,6 +77,23 @@ body {
 
 .sidebar.bottom_area > button{
     justify-content: space-between;
+}
+
+#form_for_project_name div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#form_for_project_name > * {
+    height: 25px;
+}
+
+#form_for_project_name > *:nth-child(3) {
+    border-radius: 10%;
+    cursor: pointer;
+    padding: 0 5px;
+    font-weight: 600;
 }
 
 .filter_radio_buttons {
@@ -197,11 +214,3 @@ input[name="todo_remove"] {
 .hide {
     display: none;
 }
-
-
-
-
-
-
-
-  
