@@ -1,5 +1,6 @@
 import { Todo } from "./Todo.js";
 import TodoDOMHandler from "./DOM.js";
+import plus from "../logo/plus.svg";
 const DOM = new TodoDOMHandler();
 export class TodoProject extends Todo {
   #projectName;
@@ -20,11 +21,19 @@ export class TodoProject extends Todo {
 export function addTodoProject(projectName) {
   const parent = document.querySelector("#projects_sidebar_area");
   const count = document.querySelector("#project_count");
-  count.textContent = parent.children.length + 1;
-  const projectDiv = DOM.createHTMLElement("div", undefined, "todo_project");
-  DOM.appendChildren(projectDiv, [
-    DOM.createHTMLElement("div", projectName, "project_name"),
-    DOM.createHTMLElement("div", undefined, "todo_project_count"),
-  ]);
-  parent.appendChild(projectDiv);
+  const childrenCount = parent.children.length + 1;
+  count.textContent = childrenCount;
+  parent.insertAdjacentHTML(
+    "beforeend",
+    `<div class="project">
+        <div>
+            <button class="project_name">${projectName}</button>
+         </div> 
+         <div>
+          <img src="${plus}" class="add_todo_project">
+          <button class="delete_project">Delete</button>
+         </div>
+      </div>
+    `
+  );
 }
