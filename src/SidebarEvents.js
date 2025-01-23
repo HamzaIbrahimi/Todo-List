@@ -3,16 +3,19 @@ import { addTodoProject } from "./todoProjects.js";
 import { format } from "date-fns";
 export default class SidebarEvents {
   #todos;
-  constructor(todos) {
+  #dialog;
+  constructor(todos, dialog) {
     this.#todos = todos;
+    this.#dialog = dialog;
+    this.sidebar = document.querySelector("#sidebar");
     this.header = document.querySelector("#content h2");
     this.todosBtn = document.querySelector("#todos_btn_sidebar");
     this.todayBtn = document.querySelector("#today_btn_sidebar");
     this.sortByDateBtn = document.querySelector("#sortby_btn_sidebar");
     this.filterBtn = document.querySelector("#filter_btn_sidebar");
     this.radio_buttons = document.querySelector(".filter_radio_buttons");
-    this.sidebar = document.querySelector("#sidebar");
     this.projectBtn = document.querySelector(".sidebar_add_project");
+    this.projectsSidebarArea = document.querySelector("#projects_sidebar_area");
     this.#eventListeners();
   }
 
@@ -26,6 +29,9 @@ export default class SidebarEvents {
     this.sidebar.addEventListener("submit", (e) => {
       this.#createProjectOnFormSubmit(e);
     });
+    this.projectsSidebarArea.addEventListener("click", (e) =>
+      this.#openDialog(e)
+    );
   }
 
   #renderTodos(e) {
@@ -76,6 +82,14 @@ export default class SidebarEvents {
         input.nextElementSibling.disabled = true;
       }
       addTodoProject(input.value);
+    }
+  }
+
+  #openDialog(e) {
+    if (e.target.matches(".add_todo_project")) {
+      const projectName = document.querySelector(".project_name");
+      this.#dialog.extendDialog(projectName.textContent);
+      this.#dialog.open();
     }
   }
 }
