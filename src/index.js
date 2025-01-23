@@ -13,7 +13,7 @@ import Dialog from "./Dialog.js";
 const allTodos = new Todos();
 const dialog = new Dialog();
 const audio = new Audio(pop);
-const sidebarEvents = new SidebarEvents(allTodos);
+const sidebarEvents = new SidebarEvents(allTodos, dialog);
 
 // Add Todos from local storage
 window.addEventListener("DOMContentLoaded", () => {
