@@ -17,18 +17,29 @@ export default class Dialog {
   }
 
   #eventListeners() {
-    this.#openBtn.addEventListener("click", () => this.#open());
+    this.#openBtn.addEventListener("click", () => this.open());
     this.#exitBtn.addEventListener("click", () => this.close());
     this.#dialog.addEventListener("click", (e) => this.#closeOnOutsideClick(e));
   }
 
-  #open() {
+  open() {
     this.#dialog.showModal();
   }
 
   close() {
     this.#dialog.close();
     this.#form.reset();
+  }
+
+  extendDialog(projectName) {
+    const form_content = document.querySelector("#form_content");
+    form_content.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div>
+      <p>${projectName}</p>
+      </div>`
+    );
   }
 
   #closeOnOutsideClick(e) {
