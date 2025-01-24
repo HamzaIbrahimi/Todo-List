@@ -30,17 +30,11 @@ export function getTodosFromLocalStorage() {
 
 export function storeProjectDivs() {
   const divs = document.querySelector("#projects_sidebar_area");
-  const arrayDivs = [];
-  arrayDivs.push(divs.innerHTML);
-  localStorage.setItem("divs", JSON.stringify(arrayDivs));
+  localStorage.setItem("divs", JSON.stringify(divs.innerHTML));
 }
 
 export function getProjectDivs() {
-  const json = JSON.parse(localStorage.getItem("divs"));
+  const html = JSON.parse(localStorage.getItem("divs"));
   const divs = document.querySelector("#projects_sidebar_area");
-  if (json && json.length > 0) {
-    for (const html of json) {
-      divs.insertAdjacentHTML("beforeend", html);
-    }
-  }
+  divs.insertAdjacentHTML("beforeend", html);
 }
