@@ -98,7 +98,7 @@ export class Todos {
 
   removeProject(projectName) {
     this.#todosArray = this.todosArray.filter(
-      (todo) => todo?.subProjectName !== projectName
+      (todo) => todo?.projectName !== projectName
     );
   }
 
