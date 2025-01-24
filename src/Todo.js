@@ -96,6 +96,12 @@ export class Todos {
     return this.todosArray.filter((todo) => todo?.projectName === project);
   }
 
+  removeProject(projectName) {
+    this.#todosArray = this.todosArray.filter(
+      (todo) => todo?.subProjectName !== projectName
+    );
+  }
+
   sortByDate() {
     return this.todosArray.toSorted((a, b) => compareAsc(a.date, b.date));
   }
