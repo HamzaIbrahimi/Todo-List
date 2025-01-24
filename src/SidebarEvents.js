@@ -1,6 +1,7 @@
 import { renderTodo } from "./createTodo";
 import { addTodoProject } from "./todoProjects.js";
 import { format } from "date-fns";
+import { storeProjectDivs } from "./storage.js";
 export default class SidebarEvents {
   #todos;
   #dialog;
@@ -31,6 +32,9 @@ export default class SidebarEvents {
     });
     this.projectsSidebarArea.addEventListener("click", (e) =>
       this.#openDialog(e)
+    );
+    this.projectsSidebarArea.addEventListener("click", (e) =>
+      this.#removeProject(e)
     );
   }
 
@@ -77,10 +81,6 @@ export default class SidebarEvents {
     e.preventDefault();
     if (e.target.id === "form_for_project_name") {
       const input = document.querySelector("#form_project");
-      const projectCount = document.querySelector("#project_count");
-      if (projectCount.textContent === "2") {
-        input.nextElementSibling.disabled = true;
-      }
       addTodoProject(input.value);
       e.target.reset();
     }
@@ -91,6 +91,18 @@ export default class SidebarEvents {
       const sibling = e.target.parentElement.previousElementSibling;
       this.#dialog.extendDialog(sibling.firstElementChild.textContent);
       this.#dialog.open();
+    }
+  }
+
+  #removeProject(e) {
+    if (e.target.matches(".delete_project")) {
+      let project = e.target.closest(".project");
+      const projectName = document.querySelector(".project_name");
+      this.#todos.removeProject(projectName.textContent);
+      this.#todos.print();
+      project.remove();
+      storeProjectDivs();
+      renderTodo(this.#todos.todosArray);
     }
   }
 }
