@@ -82,13 +82,14 @@ export default class SidebarEvents {
         input.nextElementSibling.disabled = true;
       }
       addTodoProject(input.value);
+      e.target.reset();
     }
   }
 
   #openDialog(e) {
     if (e.target.matches(".add_todo_project")) {
-      const projectName = document.querySelector(".project_name");
-      this.#dialog.extendDialog(projectName.textContent);
+      const sibling = e.target.parentElement.previousElementSibling;
+      this.#dialog.extendDialog(sibling.firstElementChild.textContent);
       this.#dialog.open();
     }
   }
