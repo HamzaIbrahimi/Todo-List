@@ -27,17 +27,19 @@ window.addEventListener("DOMContentLoaded", () => {
     renderTodo(allTodos.todosArray);
     getProjectDivs();
   }
+  sidebarEvents.noContentToShow();
 });
 
 //Add non project todos;
 document.querySelector("#form").addEventListener("submit", (e) => {
   e.preventDefault();
+  document.querySelector("#content h2").textContent = "Todos";
   allTodos.add(createTodoFromForm());
   sendTodosToLocalStorage(allTodos.todosArray);
   storeProjectDivs();
   renderTodo(allTodos.todosArray);
   dialog.close();
-  snackbar.duration = 3000;
+  snackbar.duration = 2000;
   snackbar.show("Todo successfully added!");
 });
 
