@@ -1,7 +1,5 @@
 import { Todo } from "./Todo.js";
-import TodoDOMHandler from "./DOM.js";
 import plus from "../logo/plus.svg";
-const DOM = new TodoDOMHandler();
 export class TodoProject extends Todo {
   #projectName;
 
