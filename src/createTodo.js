@@ -1,5 +1,6 @@
 import { Todo } from "./Todo.js";
 import expand from "../logo/arrow-expand.svg";
+import { TodoProject } from "./todoProjects.js";
 export function createTodoFromForm() {
   const description = document.querySelector("#description").value;
   let formInput = {
@@ -7,14 +8,24 @@ export function createTodoFromForm() {
     description: description ? description : "No description",
     date: document.querySelector("#date").value,
     priority: document.querySelector(`input[name="prior"]:checked`).value,
+    projectName: document.querySelector(".project_name_dialog"),
   };
-  const todo = new Todo(
+  if (!formInput?.projectName) {
+    const todo = new Todo(
+      formInput.title,
+      formInput.description,
+      formInput.date,
+      formInput.priority
+    );
+    return todo;
+  }
+  return new TodoProject(
     formInput.title,
     formInput.description,
     formInput.date,
-    formInput.priority
+    formInput.priority,
+    formInput.projectName.textContent
   );
-  return todo;
 }
 
 export function renderTodo(todoArray) {
