@@ -1,6 +1,4 @@
 import { format } from "date-fns";
-import TodoDOMHandler from "./DOM.js";
-const DOM = new TodoDOMHandler();
 export default class Dialog {
   #dialog;
   #openBtn;

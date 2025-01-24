@@ -39,7 +39,6 @@ document.querySelector("#form").addEventListener("submit", (e) => {
   dialog.close();
   snackbar.duration = 3000;
   snackbar.show("Todo successfully added!");
-  allTodos.print();
 });
 
 //expand todo info
