@@ -97,9 +97,10 @@ export class Todos {
   }
 
   removeProject(projectName) {
-    this.#todosArray = this.todosArray.filter(
-      (todo) => todo?.projectName !== projectName
-    );
+    this.#todosArray = this.todosArray.filter((todo) => {
+      return todo?.projectName !== projectName;
+    });
+    console.log(this.#todosArray);
   }
 
   sortByDate() {

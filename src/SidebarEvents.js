@@ -1,7 +1,7 @@
 import { renderTodo } from "./createTodo";
 import { addTodoProject } from "./todoProjects.js";
 import { format } from "date-fns";
-import { storeProjectDivs } from "./storage.js";
+import { storeProjectDivs, sendTodosToLocalStorage } from "./storage.js";
 
 export default class SidebarEvents {
   #todos;
@@ -84,6 +84,7 @@ export default class SidebarEvents {
       const input = document.querySelector("#form_project");
       addTodoProject(input.value);
       e.target.reset();
+      storeProjectDivs();
     }
   }
 
@@ -98,10 +99,11 @@ export default class SidebarEvents {
   #removeProject(e) {
     if (e.target.matches(".delete_project")) {
       let project = e.target.closest(".project");
-      const projectName = document.querySelector(".project_name");
-      this.#todos.removeProject(projectName.textContent);
+      let projectName = project.firstElementChild;
+      this.#todos.removeProject(projectName.firstElementChild.textContent);
       this.#todos.print();
       project.remove();
+      sendTodosToLocalStorage(this.#todos.todosArray);
       storeProjectDivs();
       renderTodo(this.#todos.todosArray);
     }
