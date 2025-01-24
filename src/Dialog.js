@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import TodoDOMHandler from "./DOM.js";
+const DOM = new TodoDOMHandler();
 export default class Dialog {
   #dialog;
   #openBtn;
@@ -17,7 +19,11 @@ export default class Dialog {
   }
 
   #eventListeners() {
-    this.#openBtn.addEventListener("click", () => this.open());
+    this.#openBtn.addEventListener("click", () => {
+      const extension = document.querySelector(".dialog_extension");
+      extension.innerHTML = "";
+      this.open();
+    });
     this.#exitBtn.addEventListener("click", () => this.close());
     this.#dialog.addEventListener("click", (e) => this.#closeOnOutsideClick(e));
   }
@@ -32,12 +38,13 @@ export default class Dialog {
   }
 
   extendDialog(projectName) {
-    const form_content = document.querySelector("#form_content");
-    form_content.insertAdjacentHTML(
+    const extension = document.querySelector(".dialog_extension");
+    extension.innerHTML = "";
+    extension.insertAdjacentHTML(
       "beforeend",
       `
       <div>
-      <p>${projectName}</p>
+      <p class= "project_name_dialog">${projectName}</p>
       </div>`
     );
   }
