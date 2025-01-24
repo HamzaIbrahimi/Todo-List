@@ -11,6 +11,10 @@ export class TodoProject extends Todo {
   get projectName() {
     return this.#projectName;
   }
+
+  get subProjectName() {
+    return this.#projectName.slice(9);
+  }
   toString() {
     return super.toString() + " - " + this.projectName;
   }
@@ -18,9 +22,6 @@ export class TodoProject extends Todo {
 
 export function addTodoProject(projectName) {
   const parent = document.querySelector("#projects_sidebar_area");
-  const count = document.querySelector("#project_count");
-  const childrenCount = parent.children.length + 1;
-  count.textContent = childrenCount;
   parent.insertAdjacentHTML(
     "beforeend",
     `<div class="project">
