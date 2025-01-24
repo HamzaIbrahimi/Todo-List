@@ -25,7 +25,7 @@ export default class SidebarEvents {
     this.todosBtn.addEventListener("click", (e) => this.#renderTodos(e));
     this.todayBtn.addEventListener("click", (e) => this.#filterByDate(e));
     this.sortByDateBtn.addEventListener("click", (e) => this.#sortByDate(e));
-    this.filterBtn.addEventListener("click", (e) => this.#showRadioButtons(e));
+    this.filterBtn.addEventListener("click", () => this.#showRadioButtons());
     this.sidebar.addEventListener("change", (e) => this.#filterByPriority(e));
     this.projectBtn.addEventListener("click", () => this.#showProjectForm());
     this.sidebar.addEventListener("submit", (e) => {
@@ -37,12 +37,16 @@ export default class SidebarEvents {
     this.projectsSidebarArea.addEventListener("click", (e) =>
       this.#removeProject(e)
     );
+    this.projectsSidebarArea.addEventListener("click", (e) =>
+      this.#filterByProject(e)
+    );
   }
 
   #renderTodos(e) {
     const text = e.currentTarget.children[1].textContent;
     this.header.textContent = text;
     renderTodo(this.#todos.todosArray);
+    this.noContentToShow();
   }
 
   #filterByDate(e) {
@@ -51,17 +55,17 @@ export default class SidebarEvents {
     const todayDate = new Date();
     const formattedDate = format(todayDate, "dd/MM/yyyy");
     renderTodo(this.#todos.filterByDate(formattedDate));
+    this.noContentToShow();
   }
 
   #sortByDate(e) {
     const text = e.currentTarget.children[1].textContent;
     this.header.textContent = text;
     renderTodo(this.#todos.sortByDate());
+    this.noContentToShow();
   }
 
-  #showRadioButtons(e) {
-    const text = e.currentTarget.children[1].textContent;
-    this.header.textContent = text;
+  #showRadioButtons() {
     this.radio_buttons.classList.toggle("hide");
   }
 
@@ -71,6 +75,7 @@ export default class SidebarEvents {
       const header = document.querySelector("#content h2");
       header.textContent = `Filter By Priority: ${element.value.toUpperCase()}`;
       renderTodo(this.#todos.filterByPriority(element.value));
+      this.noContentToShow();
     }
   }
 
@@ -106,6 +111,29 @@ export default class SidebarEvents {
       sendTodosToLocalStorage(this.#todos.todosArray);
       storeProjectDivs();
       renderTodo(this.#todos.todosArray);
+      this.noContentToShow();
+    }
+  }
+
+  #filterByProject(e) {
+    if (e.target.matches(".project_name")) {
+      let project = e.target.closest(".project");
+      let parent = project.firstElementChild;
+      let projectName = parent.firstElementChild.textContent;
+      this.header.textContent = `Project: ${projectName}`;
+      renderTodo(this.#todos.filterByProjectName(projectName));
+      this.noContentToShow();
+    }
+  }
+
+  noContentToShow() {
+    const todoContainer = document.querySelector("#todo_content");
+    if (!todoContainer.firstElementChild) {
+      todoContainer.innerHTML = "";
+      todoContainer.insertAdjacentHTML(
+        "beforeend",
+        `<div class = "no_todos"> No todos to show</div>`
+      );
     }
   }
 }
