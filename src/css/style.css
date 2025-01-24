@@ -127,6 +127,11 @@ body {
     cursor: pointer;
 }
 
+.project_name_dialog::before {
+    content: "Project: ";
+    font-weight: 600;
+}
+
 .delete_project {
     padding: 2px 3px;
     font-size: medium;
@@ -237,6 +242,12 @@ input[name="todo_remove"] {
 #todo_info {
     opacity: 0.5;
     font-size: small;
+}
+
+.no_todos {
+    opacity: 0.6;
+    font-style: italic;
+    font-weight: 500;
 }
 
 .hide {
