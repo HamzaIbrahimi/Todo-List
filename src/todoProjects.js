@@ -5,18 +5,21 @@ export class TodoProject extends Todo {
 
   constructor(title, description, dueDate, priority, projectName) {
     super(title, description, dueDate, priority);
-    this.#projectName = "Project: " + projectName;
+    this.#projectName = projectName;
   }
 
   get projectName() {
     return this.#projectName;
   }
 
-  get subProjectName() {
-    return this.#projectName.slice(9);
-  }
   toString() {
-    return super.toString() + " - " + this.projectName;
+    return super.toString() + " - Project: " + this.projectName;
+  }
+
+  toJSON() {
+    let o = super.toJSON();
+    o.projectName = this.#projectName;
+    return o;
   }
 }
 

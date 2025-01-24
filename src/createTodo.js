@@ -33,6 +33,10 @@ export function renderTodo(todoArray) {
   content.innerHTML = "";
   for (const todo of todoArray) {
     let project = todo?.projectName ? todo.projectName : "";
+    let filler = "";
+    if (project) {
+      filler = "Project: ";
+    }
     content.insertAdjacentHTML(
       "beforeend",
       `<div class="todo">
@@ -48,7 +52,7 @@ export function renderTodo(todoArray) {
                 <p><strong>Description</strong>: ${todo.description}</p>
                 <p><strong>Priority</strong>: <em>${todo.priority.toUpperCase()}</em></p>
                 <p><strong>Date</strong>: ${todo.dueDate}</p>
-                <p><strong>${project}</strong></p>
+                <p><strong>${filler} </strong>${project} </p>
             </div>       
             <hr>
       </div>`

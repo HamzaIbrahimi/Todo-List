@@ -2,6 +2,7 @@ import { renderTodo } from "./createTodo";
 import { addTodoProject } from "./todoProjects.js";
 import { format } from "date-fns";
 import { storeProjectDivs } from "./storage.js";
+
 export default class SidebarEvents {
   #todos;
   #dialog;
