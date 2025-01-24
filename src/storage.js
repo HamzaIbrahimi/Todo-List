@@ -14,3 +14,20 @@ export function getTodosFromLocalStorage() {
   }
   return todosArray;
 }
+
+export function storeProjectDivs() {
+  const divs = document.querySelector("#projects_sidebar_area");
+  const arrayDivs = [];
+  arrayDivs.push(divs.innerHTML);
+  localStorage.setItem("divs", JSON.stringify(arrayDivs));
+}
+
+export function getProjectDivs() {
+  const json = JSON.parse(localStorage.getItem("divs"));
+  const divs = document.querySelector("#projects_sidebar_area");
+  if (json && json.length > 0) {
+    for (const html of json) {
+      divs.insertAdjacentHTML("beforeend", html);
+    }
+  }
+}
