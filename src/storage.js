@@ -1,4 +1,5 @@
 import { Todo } from "./Todo.js";
+import { TodoProject } from "./todoProjects.js";
 export function sendTodosToLocalStorage(todosArray) {
   const json = JSON.stringify(todosArray.map((todo) => todo.toJSON()));
   localStorage.setItem("todos", json);
@@ -8,9 +9,21 @@ export function getTodosFromLocalStorage() {
   const json = JSON.parse(localStorage.getItem("todos"));
   let todosArray = [];
   for (const todo of json) {
-    todosArray.push(
-      new Todo(todo.title, todo.description, todo.dueDate, todo.priority)
-    );
+    if (todo?.projectName) {
+      todosArray.push(
+        new TodoProject(
+          todo.title,
+          todo.description,
+          todo.dueDate,
+          todo.priority,
+          todo.projectName
+        )
+      );
+    } else {
+      todosArray.push(
+        new Todo(todo.title, todo.description, todo.dueDate, todo.priority)
+      );
+    }
   }
   return todosArray;
 }
