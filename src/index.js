@@ -6,6 +6,8 @@ import { Todos } from "./Todo.js";
 import {
   sendTodosToLocalStorage,
   getTodosFromLocalStorage,
+  storeProjectDivs,
+  getProjectDivs,
 } from "./storage.js";
 import { createTodoFromForm, renderTodo } from "./createTodo.js";
 import SidebarEvents from "./SidebarEvents.js";
@@ -23,6 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
       allTodos.add(todo);
     }
     renderTodo(allTodos.todosArray);
+    getProjectDivs();
   }
 });
 
@@ -31,10 +34,12 @@ document.querySelector("#form").addEventListener("submit", (e) => {
   e.preventDefault();
   allTodos.add(createTodoFromForm());
   sendTodosToLocalStorage(allTodos.todosArray);
+  storeProjectDivs();
   renderTodo(allTodos.todosArray);
   dialog.close();
   snackbar.duration = 3000;
   snackbar.show("Todo successfully added!");
+  allTodos.print();
 });
 
 //expand todo info
