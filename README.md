@@ -35,7 +35,7 @@ To get started with the project:
 
 ## Live Demo
 
-Alternatively, you can view the live demo of the project at this link: [Live Demo]()
+Alternatively, you can view the live demo of the project at this link: [Live Demo](https://hamzaibrahimi.github.io/Todo-List/)
 
 ## Contributing
 
