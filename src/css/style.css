@@ -162,6 +162,10 @@ body {
     align-items: center;
 }
 
+#form_for_project_name {
+    font-size: 14px;
+}
+
 #title,
 #description {
     width: 100%;
