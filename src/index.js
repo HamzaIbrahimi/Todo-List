@@ -20,7 +20,7 @@ const sidebarEvents = new SidebarEvents(allTodos, dialog);
 // Add Todos from local storage
 window.addEventListener("DOMContentLoaded", () => {
   const localStorageArray = getTodosFromLocalStorage();
-  if (localStorageArray.length > 0) {
+  if (localStorageArray && localStorageArray.length > 0) {
     for (const todo of localStorageArray) {
       allTodos.add(todo);
     }
