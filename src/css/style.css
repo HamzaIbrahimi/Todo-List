@@ -64,7 +64,7 @@ body {
 
 .sidebar.top_area > #add_todo {
     color: var(--add_color) ; 
-    font-size: large;  
+    font-size: 20px;  
 }
 
 #add_todo > img,
@@ -88,12 +88,8 @@ body {
     align-items: center;
     gap: 5px;
 }
-#form_for_project_name > * {
-    height: 25px;
-}
 
-#form_for_project_name > *:nth-child(3) {
-    border-radius: 10%;
+#form_project_submit{
     cursor: pointer;
     padding: 0 5px;
     font-weight: 600;
@@ -134,7 +130,7 @@ body {
 
 .delete_project {
     padding: 2px 3px;
-    font-size: medium;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -169,15 +165,11 @@ body {
 input[type="text"] {
     width: 100%;
     height: 30px;
-    font-size: Large;
 }
+
 input[name="todo_remove"] {
     width: 20px;
     height: 20px;
-}
-
-#description {
-    font-size: small;
 }
 
 #priority_radio {
@@ -241,7 +233,7 @@ input[name="todo_remove"] {
 
 #todo_info {
     opacity: 0.5;
-    font-size: small;
+    font-size: 12px;
 }
 
 .no_todos {
